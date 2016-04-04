@@ -1,4 +1,3 @@
-from builtins import object
 import logging
 from pyparsing import ParseResults
 from brabbel.parser import Parser
@@ -37,10 +36,17 @@ def _evaluate_term(op, operand):
 
 def _resolve_variable(key, values):
     try:
-        value = values[key.strip("$")]
+        key = key.strip("$")
+        attr_names = key.split(".")
+        value = values[attr_names.pop(0)]
+        for attr_name in attr_names:
+            value = getattr(value, attr_name)
+
     except KeyError:
-        log.warning("Variable %s could not found in the values."
-                    % key.strip("$"))
+        log.warning("Variable {} could not found in the values.".format(key))
+        value = None
+    except AttributeError:
+        log.exception("Attribute could not be found on '{}'".format(key))
         value = None
     return value
 

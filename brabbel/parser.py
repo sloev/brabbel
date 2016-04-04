@@ -1,5 +1,4 @@
 import logging
-from builtins import object
 from pyparsing import (
     ParserElement,
     Literal, Word,
@@ -98,6 +97,7 @@ o_eq = Literal("==")
 o_and = Literal("and")
 o_or = Literal("or")
 o_in = Literal("in")
+o_intersect = Literal("intersect")
 
 bnf = operatorPrecedence(atom,
                          [(o_not, 1, opAssoc.RIGHT),
@@ -114,6 +114,7 @@ bnf = operatorPrecedence(atom,
                           (o_and, 2, opAssoc.LEFT),
                           (o_or, 2, opAssoc.LEFT),
                           (o_in, 2, opAssoc.LEFT),
+                          (o_intersect, 2, opAssoc.LEFT)
                           ])
 
 

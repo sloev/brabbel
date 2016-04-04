@@ -31,6 +31,14 @@ class In(Binary):
         """Returns true if a is in list b"""
         return a in b
 
+class Intersect(Binary):
+    """In operator"""
+
+    def eval(self, a, b):
+        """Returns true if a is in list b"""
+        return any(e in a for e in b)
+
+
 operators = {
     "not": operator.not_,
     "+": operator.add,
@@ -45,5 +53,6 @@ operators = {
     "!=": operator.ne,
     "and": operator.and_,
     "or": operator.or_,
-    "in": In().eval
+    "in": In().eval,
+    "intersect": Intersect().eval
 }

@@ -1,4 +1,3 @@
-from builtins import str
 from datetime import date, timedelta
 
 def _date(ds):
