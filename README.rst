@@ -1,4 +1,4 @@
 Cabaca
 =======
 
-Cabaca is a watchdog guards access to treasured resources using policies.
+Cabaca is a watchdog that guards access to treasured resources using policies.
